@@ -24,10 +24,9 @@ $ git clone git@github.com:Abdullah-Raashid/studentManagementDjango.git && cd st
 
 # Create and activate a virtual environment
 $ python3 -m venv venv
-$ source venv/bin/activate  # Windows: venv\Scripts\activate
+$ source venv/bin/activate  # windows: venv\Scripts\activate
 
 # Install Python dependencies
-$ pip install --upgrade pip
 $ pip install -r requirements.txt
 
 # Apply database migrations
