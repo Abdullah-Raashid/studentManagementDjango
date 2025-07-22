@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from rest_framework.routers import DefaultRouter
+from student.api import StudentViewSet
+from graphene_django.views import GraphQLView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,4 +25,13 @@ urlpatterns = [
     path('student/',include("student.urls")),
     path('authentication/',include("home_auth.urls"))
 
+]
+
+router = DefaultRouter()
+router.register(r'api/students', StudentViewSet, basename='api-students')
+
+urlpatterns += router.urls
+
+urlpatterns += [
+    path('graphql/', GraphQLView.as_view(graphiql=True)),
 ]

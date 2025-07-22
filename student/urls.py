@@ -8,6 +8,7 @@ urlpatterns = [
     path('students/<str:slug>/', views.view_student, name='view_student'),
     path('edit/<str:slug>/', views.edit_student, name='edit_student'),
     path('delete/<str:slug>/', views.delete_student, name='delete_student'),
+    path('export/csv/', views.download_students_csv, name='download_students_csv'),
 
   
 

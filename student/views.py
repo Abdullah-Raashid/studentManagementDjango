@@ -1,9 +1,11 @@
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, StreamingHttpResponse
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import *
 from django.contrib import messages
 from school.utils import create_notification
 from django.db import models
+from home_auth.permissions import admin_required
+from student.utils import iter_students_csv
 # Create your views here.
 
 def add_student(request):
@@ -158,3 +160,11 @@ def delete_student(request,slug):
         create_notification(request.user, f"Deleted student: {student_name}")
         return redirect ('student_list')
     return HttpResponseForbidden()
+
+@admin_required
+def download_students_csv(request):
+    """Stream all students as CSV using a generator to avoid memory bloat."""
+    qs = Student.objects.with_parent().all()
+    response = StreamingHttpResponse(iter_students_csv(qs), content_type="text/csv")
+    response["Content-Disposition"] = "attachment; filename=students.csv"
+    return response

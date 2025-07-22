@@ -69,3 +69,23 @@ docker-compose.prod.yml
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# CI/CD & Deployment
+vercel.json
+.vercel/
+
+# Testing & Coverage artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# Type checking & Linting caches
+.mypy_cache/
+ruff_cache/
+
+# Node dependencies
+node_modules/
+
+# Python virtual environments
+.venv/
